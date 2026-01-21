@@ -2,7 +2,7 @@ function mostrarSeccion(id) { const secciones = document.querySelectorAll('.secc
 
 
 function hablar(texto) {
-	window.speechSynthesis.cancel(mensaje);
+	
     const mensaje = new SpeechSynthesisUtterance(texto);
     mensaje.lang = "es-ES";
 	mensaje.rate = 0.9
