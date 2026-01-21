@@ -13,6 +13,7 @@
     <button onclick="mostrarSeccion('pictos')">Pictogramas</button>
     <button onclick="mostrarSeccion('emociones')">Emociones</button>
     <button onclick="mostrarSeccion('rutinas')">Rutinas</button>
+	<button onclick="mostrarSeccion('juego'); iniciarJuego();">Juego</button>
   </nav>  <main>
     <section id="pictos" class="seccion">
       <h2>🖼️ Pictogramas</h2>
@@ -34,15 +35,16 @@
           <span>Jugar</span>
         </button>
       </div>
-    </section><section id="emociones" class="seccion oculto">
+    </section>
+<section id="emociones" class="seccion oculto">
   <h2>😊 Emociones</h2>
   <div class="grid">
-    <button class="picto" onclick="hablar('Feliz')">
-      <img src="https://static.arasaac.org/pictograms/101/101_300.png" alt="Feliz" />
-      <span>Feliz</span>
+    <button class="picto" onclick="hablar('alegre')">
+      <img src="alegre.png" alt="Alegre" />
+      <span>Alegre</span>
     </button>
     <button class="picto" onclick="hablar('Triste')">
-      <img src="https://static.arasaac.org/pictograms/102/102_300.png" alt="Triste" />
+      <img src="triste.png" alt="Triste" />
       <span>Triste</span>
     </button>
   </div>
@@ -61,6 +63,17 @@
     </button>
   </div>
 </section>
+
+<section id="juego" class="seccion oculto">
+  <h2>🎯 Juego de colores</h2>
+  <p>Haz clic en el color que te indique:</p>
+  <p id="instruccion" style="font-size:20px; font-weight:bold;"></p>
+  <div class="grid" id="coloresGrid"></div>
+  <p id="resultado" style="font-size:18px; font-weight:bold; margin-top:10px;"></p>
+</section>
+
+
+
 
   </main>  <footer>
     <p>💙 Comunicación aumentativa accesible 💙</p>
