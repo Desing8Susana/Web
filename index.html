@@ -11,55 +11,58 @@
     <p>Aprender, comunicar y jugar de forma sencilla</p>
   </header>  <nav>
     <button onclick="mostrarSeccion('pictos')">Pictogramas</button>
-    <button onclick="mostrarSeccion('actividades')">Actividades</button>
     <button onclick="mostrarSeccion('emociones')">Emociones</button>
     <button onclick="mostrarSeccion('rutinas')">Rutinas</button>
   </nav>  <main>
     <section id="pictos" class="seccion">
       <h2>🖼️ Pictogramas</h2>
       <div class="grid">
-        <button onclick="hablar('Comer')" class="card">🍽️ Comer</button>
-        <div class="card">🚿 Ducha</div>
-        <div class="card">😴 Dormir</div>
-        <div class="card">🏫 Colegio</div>
-        <div class="card">🎮 Jugar</div>
+        <button class="picto" onclick="hablar('Comer')">
+          <img src="https://static.arasaac.org/pictograms/29533/29533_300.png" alt="Comer" />
+          <span>Comer</span>
+        </button>
+        <button class="picto" onclick="hablar('Ducha')">
+          <img src="https://static.arasaac.org/pictograms/27921/27921_300.png" alt="Ducha" />
+          <span>Ducha</span>
+        </button>
+        <button class="picto" onclick="hablar('Dormir')">
+          <img src="https://static.arasaac.org/pictograms/209/209_300.png" alt="Dormir" />
+          <span>Dormir</span>
+        </button>
+        <button class="picto" onclick="hablar('Jugar')">
+          <img src="https://static.arasaac.org/pictograms/217/217_300.png" alt="Jugar" />
+          <span>Jugar</span>
+        </button>
       </div>
-    </section><section id="actividades" class="seccion oculto">
-  <h2>🎲 Actividades</h2>
-  <ul>
-    <li>🔵 Emparejar colores</li>
-    <li>🔢 Contar objetos</li>
-    <li>🧩 Puzzles sencillos</li>
-    <li>🎵 Escuchar sonidos</li>
-  </ul>
-</section>
-
-<section id="emociones" class="seccion oculto">
+    </section><section id="emociones" class="seccion oculto">
   <h2>😊 Emociones</h2>
   <div class="grid">
-    <div class="card">😀 Feliz</div>
-    <div class="card">😢 Triste</div>
-    <div class="card">😡 Enfadado</div>
-    <div class="card">😨 Asustado</div>
+    <button class="picto" onclick="hablar('Feliz')">
+      <img src="https://static.arasaac.org/pictograms/101/101_300.png" alt="Feliz" />
+      <span>Feliz</span>
+    </button>
+    <button class="picto" onclick="hablar('Triste')">
+      <img src="https://static.arasaac.org/pictograms/102/102_300.png" alt="Triste" />
+      <span>Triste</span>
+    </button>
   </div>
 </section>
 
 <section id="rutinas" class="seccion oculto">
-  <h2>⏰ Rutinas diarias</h2>
-  <ol>
-    <li>Levantarse</li>
-    <li>Desayunar</li>
-    <li>Ir al colegio</li>
-    <li>Comer</li>
-    <li>Jugar</li>
-    <li>Dormir</li>
-  </ol>
+  <h2>⏰ Rutinas</h2>
+  <div class="grid">
+    <button class="picto" onclick="hablar('Levantarse')">
+      <img src="https://static.arasaac.org/pictograms/300/300_300.png" alt="Levantarse" />
+      <span>Levantarse</span>
+    </button>
+    <button class="picto" onclick="hablar('Ir al colegio')">
+      <img src="https://static.arasaac.org/pictograms/232/232_300.png" alt="Colegio" />
+      <span>Colegio</span>
+    </button>
+  </div>
 </section>
 
   </main>  <footer>
-    <p>💙 Diseñado para apoyar la inclusión y la comunicación > ></p>
+    <p>💙 Comunicación aumentativa accesible</p>
   </footer>  <script src="script.js"></script></body>
-  </html>
-
-
-
+</html>/
