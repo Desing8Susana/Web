@@ -2,14 +2,12 @@
    DESBLOQUEO DE AUDIO (MÓVIL)
 ================================ */
 let permitido = false;
-
 function desbloquearAudio() {
   const u = new SpeechSynthesisUtterance('');
   speechSynthesis.speak(u);
   speechSynthesis.cancel();
   permitido = true;
 }
-
 document.addEventListener('click', desbloquearAudio, { once: true });
 document.addEventListener('touchstart', desbloquearAudio, { once: true });
 
@@ -121,14 +119,28 @@ function comprobarPareja(){
 }
 
 /* ===============================
-   CUENTO INTERACTIVO
+   CUENTO INTERACTIVO CON OPCIONES
 ================================ */
 let paginaActual=0;
 const cuento=[
-  { texto:'Vega se levanta y se lava los dientes', opciones:[ { picto:'🪥', texto:'Siguiente', siguiente:1 } ] },
-  { texto:'Vega desayuna fuet y fruta', opciones:[ { picto:'🍴', texto:'Siguiente', siguiente:2 } ] },
-  { texto:'Vega juega con agua en el patio', opciones:[ { picto:'💦', texto:'Siguiente', siguiente:3 } ] },
-  { texto:'Vega se acuesta a dormir', opciones:[ { picto:'😴', texto:'Fin', siguiente:null } ] }
+  { texto:'Vega se despierta', opciones:[
+      { picto:'🪥', texto:'Lavarse dientes', siguiente:1 },
+      { picto:'🍴', texto:'Desayunar', siguiente:2 }
+    ]},
+  { texto:'Vega se lava los dientes', opciones:[
+      { picto:'🍴', texto:'Desayunar', siguiente:2 },
+      { picto:'💦', texto:'Jugar con agua', siguiente:3 }
+    ]},
+  { texto:'Vega desayuna fuet', opciones:[
+      { picto:'💦', texto:'Jugar con agua', siguiente:3 },
+      { picto:'😴', texto:'Acostarse', siguiente:4 }
+    ]},
+  { texto:'Vega juega con agua', opciones:[
+      { picto:'😴', texto:'Acostarse', siguiente:4 }
+    ]},
+  { texto:'Vega se acuesta a dormir', opciones:[
+      { picto:'✅', texto:'Fin del cuento', siguiente:null }
+    ]}
 ];
 
 function iniciarCuento(){ paginaActual=0; mostrarPagina(paginaActual); }
