@@ -3,15 +3,15 @@
 ================================ */
 let permitido = false;
 
-document.addEventListener('click', desbloquearAudio, { once: true });
-document.addEventListener('touchstart', desbloquearAudio, { once: true });
-
 function desbloquearAudio() {
   const u = new SpeechSynthesisUtterance('');
   speechSynthesis.speak(u);
   speechSynthesis.cancel();
   permitido = true;
 }
+
+document.addEventListener('click', desbloquearAudio, { once: true });
+document.addEventListener('touchstart', desbloquearAudio, { once: true });
 
 function hablar(texto) {
   if (!permitido) return;
@@ -27,33 +27,27 @@ function hablar(texto) {
 ================================ */
 function mostrarSeccion(id) {
   document.querySelectorAll('.seccion').forEach(s => s.classList.add('oculto'));
-  document.getElementById(id).classList.remove('oculto');
+  const sec = document.getElementById(id);
+  sec.classList.remove('oculto');
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 /* ===============================
    JUEGO DE COLORES
 ================================ */
 const colores = ['Rojo', 'Azul', 'Verde', 'Amarillo'];
-const colorHex = {
-  Rojo: '#f44336',
-  Azul: '#2196f3',
-  Verde: '#4caf50',
-  Amarillo: '#ffeb3b'
-};
-
+const colorHex = { Rojo:'#f44336', Azul:'#2196f3', Verde:'#4caf50', Amarillo:'#ffeb3b' };
 let colorCorrecto = '';
 
 function iniciarJuego() {
   const grid = document.getElementById('coloresGrid');
   const instruccion = document.getElementById('instruccion');
   const resultado = document.getElementById('resultado');
-
-  if (!grid || !instruccion || !resultado) return;
+  if(!grid || !instruccion || !resultado) return;
 
   grid.innerHTML = '';
   resultado.textContent = '';
-
-  colorCorrecto = colores[Math.floor(Math.random() * colores.length)];
+  colorCorrecto = colores[Math.floor(Math.random()*colores.length)];
   instruccion.textContent = 'Pulsa el color: ' + colorCorrecto;
 
   colores.forEach(color => {
@@ -64,9 +58,8 @@ function iniciarJuego() {
     btn.style.borderRadius = '16px';
     btn.style.border = '2px solid #333';
     btn.style.cursor = 'pointer';
-
     btn.onclick = () => {
-      if (color === colorCorrecto) {
+      if(color === colorCorrecto){
         resultado.textContent = '¡Correcto! 🎉';
         hablar('Correcto');
         iniciarJuego();
@@ -75,151 +68,101 @@ function iniciarJuego() {
         hablar('Intenta otra vez');
       }
     };
-
     grid.appendChild(btn);
   });
 }
 
 /* ===============================
-   JUEGO DE CARTAS (MEMORY)
-   10 CARTAS / 5 PAREJAS
+   JUEGO DE CARTAS
 ================================ */
-const cartasJuego = ['🍎', '🍌', '🍇', '🍉', '🥝', '🍎', '🍌', '🍇', '🍉', '🥝'];
-let cartasVolteadas = [];
-let bloqueado = false;
+const cartasJuego = ['🍎','🍌','🍇','🍉','🥝','🍒','🍎','🍌','🍇','🍉','🥝','🍒'];
+let cartasVolteadas=[], bloqueado=false;
 
 function iniciarCartas() {
   const contenedor = document.getElementById('cartasGrid');
-  if (!contenedor) return;
-
+  if(!contenedor) return;
   contenedor.innerHTML = '';
   cartasVolteadas = [];
-  bloqueado = false;
-
-  const mezcladas = [...cartasJuego].sort(() => Math.random() - 0.5);
-
-  mezcladas.forEach(simbolo => {
+  bloqueado=false;
+  const mezcladas = [...cartasJuego].sort(()=>Math.random()-0.5);
+  mezcladas.forEach(simbolo=>{
     const carta = document.createElement('button');
-    carta.className = 'picto';
-    carta.textContent = '❓';
-    carta.dataset.valor = simbolo;
-
-    carta.onclick = () => voltearCarta(carta);
-
+    carta.className='picto';
+    carta.textContent='❓';
+    carta.dataset.valor=simbolo;
+    carta.onclick=()=>voltearCarta(carta);
     contenedor.appendChild(carta);
   });
 }
 
-function voltearCarta(carta) {
-  if (bloqueado || carta.textContent !== '❓') return;
-
-  carta.textContent = carta.dataset.valor;
+function voltearCarta(carta){
+  if(bloqueado || carta.textContent!=='❓') return;
+  carta.textContent=carta.dataset.valor;
   cartasVolteadas.push(carta);
-
-  if (cartasVolteadas.length === 2) {
-    comprobarPareja();
-  }
+  if(cartasVolteadas.length===2) comprobarPareja();
 }
 
-function comprobarPareja() {
-  bloqueado = true;
-
-  const [c1, c2] = cartasVolteadas;
-
-  if (c1.dataset.valor === c2.dataset.valor) {
+function comprobarPareja(){
+  bloqueado=true;
+  const [c1,c2]=cartasVolteadas;
+  if(c1.dataset.valor===c2.dataset.valor){
     hablar('Muy bien');
-    cartasVolteadas = [];
-    bloqueado = false;
+    cartasVolteadas=[];
+    bloqueado=false;
   } else {
-    setTimeout(() => {
-      c1.textContent = '❓';
-      c2.textContent = '❓';
-      cartasVolteadas = [];
-      bloqueado = false;
+    setTimeout(()=>{
+      c1.textContent='❓';
+      c2.textContent='❓';
+      cartasVolteadas=[];
+      bloqueado=false;
       hablar('Inténtalo otra vez');
-    }, 800);
+    },800);
   }
 }
 
 /* ===============================
    CUENTO INTERACTIVO
 ================================ */
-const cuento = [
-  {
-    texto: "Hoy Vega quiere ir al parque",
-    opciones: [
-      { picto: "🏞️", texto: "Ir al parque", siguiente: 1 },
-      { picto: "🏠", texto: "Quedarse en casa", siguiente: 2 }
-    ]
-  },
-  {
-    texto: "Vega se encuentra con un perro",
-    opciones: [
-      { picto: "🐶", texto: "Saludar al perro", siguiente: 3 },
-      { picto: "🙈", texto: "Ignorar", siguiente: 4 }
-    ]
-  },
-  {
-    texto: "Vega decide quedarse en casa y juega con sus juguetes",
-    opciones: [
-      { picto: "💧", texto: "Jugar con agua", siguiente: null },
-      { picto: "🎨", texto: "Pintar", siguiente: null }
-    ]
-  },
-  {
-    texto: "El perro mueve la cola y Vega está feliz",
-    opciones: [
-      { picto: "😀", texto: "Reír", siguiente: null },
-      { picto: "⚽", texto: "Jugar al balón", siguiente: null }
-    ]
-  },
-  {
-    texto: "Vega ignora al perro y sigue caminando",
-    opciones: [
-      { picto: "🚶", texto: "Seguir caminando", siguiente: null },
-      { picto: "🥓", texto: "Comer fuet", siguiente: null } // CAMBIO HECHO
-    ]
-  }
+let paginaActual=0;
+const cuento=[
+  { texto:'Vega se levanta y se lava los dientes', opciones:[ { picto:'🪥', texto:'Siguiente', siguiente:1 } ] },
+  { texto:'Vega desayuna fuet y fruta', opciones:[ { picto:'🍴', texto:'Siguiente', siguiente:2 } ] },
+  { texto:'Vega juega con agua en el patio', opciones:[ { picto:'💦', texto:'Siguiente', siguiente:3 } ] },
+  { texto:'Vega se acuesta a dormir', opciones:[ { picto:'😴', texto:'Fin', siguiente:null } ] }
 ];
 
-let paginaActual = 0;
+function iniciarCuento(){ paginaActual=0; mostrarPagina(paginaActual); }
 
-function iniciarCuento() {
-  paginaActual = 0;
-  mostrarPagina(paginaActual);
-}
+function mostrarPagina(indice){
+  const contenedorTexto=document.getElementById('cuentoTexto');
+  const contenedorOpciones=document.getElementById('cuentoOpciones');
+  if(!contenedorTexto || !contenedorOpciones) return;
 
-function mostrarPagina(indice) {
-  const contenedorTexto = document.getElementById('cuentoTexto');
-  const contenedorOpciones = document.getElementById('cuentoOpciones');
-
-  if (!contenedorTexto || !contenedorOpciones) return;
-
-  const pagina = cuento[indice];
-  contenedorTexto.textContent = pagina.texto;
+  const pagina=cuento[indice];
+  contenedorTexto.textContent=pagina.texto;
   hablar(pagina.texto);
+  contenedorOpciones.innerHTML='';
 
-  contenedorOpciones.innerHTML = '';
-
-  pagina.opciones.forEach(opcion => {
-    const btn = document.createElement('button');
-    btn.className = 'picto';
-    btn.textContent = opcion.picto;
-    const span = document.createElement('span');
-    span.textContent = opcion.texto;
+  pagina.opciones.forEach(opcion=>{
+    const btn=document.createElement('button');
+    btn.className='picto';
+    btn.textContent=opcion.picto;
+    const span=document.createElement('span');
+    span.textContent=opcion.texto;
     btn.appendChild(span);
-
-    btn.onclick = () => {
-      if (opcion.siguiente !== null) {
-        paginaActual = opcion.siguiente;
-        mostrarPagina(paginaActual);
-      } else {
-        contenedorTexto.textContent = "✅ Fin del cuento";
-        hablar("Fin del cuento");
-        contenedorOpciones.innerHTML = '';
-      }
-    };
-
+    btn.addEventListener('click',()=>avanzarPagina(opcion));
+    btn.addEventListener('touchstart',()=>avanzarPagina(opcion),{passive:true});
     contenedorOpciones.appendChild(btn);
   });
+}
+
+function avanzarPagina(opcion){
+  if(opcion.siguiente!==null){ paginaActual=opcion.siguiente; mostrarPagina(paginaActual); }
+  else{
+    const contenedorTexto=document.getElementById('cuentoTexto');
+    const contenedorOpciones=document.getElementById('cuentoOpciones');
+    contenedorTexto.textContent="✅ Fin del cuento";
+    hablar("Fin del cuento");
+    contenedorOpciones.innerHTML='';
+  }
 }
