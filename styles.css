@@ -6,14 +6,18 @@ nav button:hover{ background:#64b5f6; }
 main { padding:16px; }
 .seccion { animation:fade 0.3s ease-in-out; }
 .oculto { display:none; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:16px; justify-items:center; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:16px; justify-items:center; }
 .picto { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; max-width:150px; min-height:120px; background:#fff; border-radius:16px; cursor:pointer; }
 .picto img { width:70px; height:auto; }
-.picto span { margin-top:8px; font-size:16px; text-align:center; }
-.picto:active { transform:scale(0.95); background:#e3f2fd; }
 footer { text-align:center; padding:15px; background:#e3f2fd; }
 @keyframes fade { from{opacity:0;} to{opacity:1;} }
 
+#cuentoOpciones {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+  gap:12px;
+  justify-items:center;
+  overflow-x:hidden; /* Evita scroll horizontal en móviles */
+}
+
 @media (max-width:600px) { .grid{ grid-template-columns:repeat(2,1fr); } }
-@media (min-width:601px) and (max-width:1024px) { .grid{ grid-template-columns:repeat(3,1fr); } }
-@media (min-width:1025px) { .grid{ grid-template-columns:repeat(5,1fr); } }
