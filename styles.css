@@ -11,3 +11,4 @@ main { padding:16px; }
 .picto img { width:70px; height:auto; }
 footer { text-align:center; padding:15px; background:#e3f2fd; }
 @keyframes fade { from{opacity:0;} to{opacity:1;} }
+@media (max-width:600px) { .grid{ grid-template-columns:repeat(2,1fr); } }
