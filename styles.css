@@ -1,0 +1,58 @@
+body { font-family: Arial; margin:0; background:#f4f7fb; color:#333; }
+header { background:#6ec6ff; text-align:center; padding:20px; }
+nav { display:flex; justify-content:center; gap:10px; padding:10px; background:#e3f2fd; flex-wrap:wrap; }
+nav button { padding:10px 15px; border:none; border-radius:10px; background:#90caf9; font-size:16px; cursor:pointer; }
+nav button:hover{ background:#64b5f6; }
+main { padding:16px; }
+.seccion { animation:fade 0.3s ease-in-out; }
+.oculto { display:none; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:16px; justify-items:center; }
+.picto { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; max-width:150px; min-height:120px; background:#fff; border-radius:16px; cursor:pointer; }
+.picto img { width:70px; height:auto; }
+footer { text-align:center; padding:15px; background:#e3f2fd; }
+@keyframes fade { from{opacity:0;} to{opacity:1;} }
+
+@media (max-width:600px) { .grid{ grid-template-columns:repeat(2,1fr); } }
+
+/* Cuento interactivo */
+#cuentoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 10px;
+  width: 100%;
+}
+#cuentoGrid p { text-align:center; }
+#cuentoGrid button.picto {
+  width: 150px;
+  min-height: 50px;
+  font-size:16px;
+  background:#fff;
+  border-radius:16px;
+  border:2px solid #333;
+  cursor:pointer;
+}
+#cuentoGrid button.picto:hover { background:#e3f2fd; }
+
+#cuentoGrid button.picto {
+  width: 120px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 16px;
+  border: 2px solid #333;
+  cursor: pointer;
+  background:#fff;
+}
+#cuentoGrid button.picto img {
+  width: 70px;
+  height: auto;
+  margin-bottom: 5px;
+}
+#cuentoGrid button.picto:hover { background:#e3f2fd; }

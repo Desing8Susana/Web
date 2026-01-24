@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apoyo Autismo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>🌈 Apoyo para niños y personas con autismo</h1>
+    <p>Aprender, comunicar y jugar de forma sencilla</p>
+  </header>
+
+  <nav>
+    <button onclick="mostrarSeccion('pictos')">Pictogramas</button>
+    <button onclick="mostrarSeccion('emociones')">Emociones</button>
+    <button onclick="mostrarSeccion('rutinas')">Rutinas</button>
+    <button onclick="mostrarSeccion('juego'); iniciarJuego();">Juego de colores</button>
+    <button onclick="mostrarSeccion('cartas'); iniciarCartas();">Juego de cartas</button>
+    <button onclick="mostrarSeccion('cuento'); iniciarCuento();">Cuento interactivo</button>
+  </nav>
+
+  <main>
+    <!-- Pictogramas -->
+    <section id="pictos" class="seccion">
+      <h2>🖼️ Pictogramas</h2>
+      <div class="grid">
+        <button class="picto" onclick="hablar('Comer fuet')">
+          <img src="comer.png" alt="Comer fuet">
+          <span>Comer fuet</span>
+        </button>
+        <button class="picto" onclick="hablar('Ducharse')">
+          <img src="ducharse.png" alt="Ducharse">
+          <span>Ducharse</span>
+        </button>
+        <button class="picto" onclick="hablar('Dormir')">
+          <img src="dormir.png" alt="Dormir">
+          <span>Dormir</span>
+        </button>
+        <button class="picto" onclick="hablar('Jugar con agua')">
+          <img src="jugar.png" alt="Jugar con agua">
+          <span>Jugar con agua</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Emociones -->
+    <section id="emociones" class="seccion oculto">
+      <h2>😊 Emociones</h2>
+      <div class="grid">
+        <button class="picto" onclick="hablar('Alegre')">
+          <img src="alegre.png" alt="Alegre">
+          <span>Alegre</span>
+        </button>
+        <button class="picto" onclick="hablar('Triste')">
+          <img src="triste.png" alt="Triste">
+          <span>Triste</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Rutinas -->
+    <section id="rutinas" class="seccion oculto">
+      <h2>⏰ Rutinas</h2>
+      <div class="grid">
+        <button class="picto" onclick="hablar('Levantarse')">
+          <img src="levantarse.png" alt="Levantarse">
+          <span>Levantarse</span>
+        </button>
+        <button class="picto" onclick="hablar('Ir al colegio')">
+          <img src="colegio.png" alt="Colegio">
+          <span>Colegio</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Juego de colores -->
+    <section id="juego" class="seccion oculto">
+      <h2>🎯 Juego de colores</h2>
+      <p id="instruccion"></p>
+      <div class="grid" id="coloresGrid"></div>
+      <p id="resultado"></p>
+    </section>
+
+    <!-- Juego de cartas -->
+    <section id="cartas" class="seccion oculto">
+      <h2>🃏 Juego de cartas</h2>
+      <div class="grid" id="cartasGrid"></div>
+    </section>
+
+    <!-- Cuento interactivo -->
+    <section id="cuento" class="seccion oculto">
+      <h2>📖 Cuento interactivo</h2>
+      <div id="cuentoGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>💙 Comunicación aumentativa accesible 💙</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
