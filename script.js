@@ -1,3 +1,7 @@
+/* ===============================
+   DESBLOQUEO DE AUDIO (MÓVIL)
+================================ */
+
 let permitido = false;
 
 document.addEventListener('click', desbloquearAudio, { once: true });
@@ -20,6 +24,10 @@ function hablar(texto) {
   speechSynthesis.speak(voz);
 }
 
+/* ===============================
+   NAVEGACIÓN ENTRE SECCIONES
+================================ */
+
 function mostrarSeccion(id) {
   document.querySelectorAll('.seccion').forEach(s =>
     s.classList.add('oculto')
@@ -27,7 +35,9 @@ function mostrarSeccion(id) {
   document.getElementById(id).classList.remove('oculto');
 }
 
-/* ===== JUEGO DE COLORES ===== */
+/* ===============================
+   JUEGO DE COLORES
+================================ */
 
 const colores = ['Rojo', 'Azul', 'Verde', 'Amarillo'];
 const colorHex = {
@@ -47,20 +57,18 @@ function iniciarJuego() {
   if (!grid || !instruccion || !resultado) return;
 
   grid.innerHTML = '';
+  resultado.textContent = '';
 
   colorCorrecto = colores[Math.floor(Math.random() * colores.length)];
   instruccion.textContent = 'Pulsa el color: ' + colorCorrecto;
-  resultado.textContent = '';
 
   colores.forEach(color => {
     const btn = document.createElement('button');
-
-    // 👇 CLAVE PARA QUE SE VEA EN MÓVIL
-    btn.classList.add('picto');
-
-    btn.style.backgroundColor = colorHex[color];
-    btn.style.border = '2px solid #333';
+    btn.style.background = colorHex[color];
+    btn.style.height = '80px';
     btn.style.width = '100%';
+    btn.style.borderRadius = '16px';
+    btn.style.border = '2px solid #333';
     btn.style.cursor = 'pointer';
 
     btn.onclick = () => {
@@ -78,9 +86,64 @@ function iniciarJuego() {
   });
 }
 
-/* Lanzar el juego cuando se pulsa el botón Juego (móvil seguro) */
-document
-  .querySelector("button[onclick=\"mostrarSeccion('juego'); iniciarJuego();\"]")
-  ?.addEventListener('click', () => {
-    setTimeout(iniciarJuego, 50);
+/* ===============================
+   JUEGO DE CARTAS (MEMORY)
+   16 CARTAS / 8 PAREJAS
+================================ */
+
+const cartasJuego = ['🍎','🍌','🍇','🍉','🍓','🍒','🥝','🍍','🍎','🍌','🍇','🍉','🍓','🍒','🥝','🍍'];
+let cartasVolteadas = [];
+let bloqueado = false;
+
+function iniciarCartas() {
+  const contenedor = document.getElementById('cartasGrid');
+  if (!contenedor) return;
+
+  contenedor.innerHTML = '';
+  cartasVolteadas = [];
+  bloqueado = false;
+
+  const mezcladas = [...cartasJuego].sort(() => Math.random() - 0.5);
+
+  mezcladas.forEach(simbolo => {
+    const carta = document.createElement('button');
+    carta.className = 'picto';
+    carta.textContent = '❓';
+    carta.dataset.valor = simbolo;
+
+    carta.onclick = () => voltearCarta(carta);
+
+    contenedor.appendChild(carta);
   });
+}
+
+function voltearCarta(carta) {
+  if (bloqueado || carta.textContent !== '❓') return;
+
+  carta.textContent = carta.dataset.valor;
+  cartasVolteadas.push(carta);
+
+  if (cartasVolteadas.length === 2) {
+    comprobarPareja();
+  }
+}
+
+function comprobarPareja() {
+  bloqueado = true;
+
+  const [c1, c2] = cartasVolteadas;
+
+  if (c1.dataset.valor === c2.dataset.valor) {
+    hablar('Muy bien');
+    cartasVolteadas = [];
+    bloqueado = false;
+  } else {
+    setTimeout(() => {
+      c1.textContent = '❓';
+      c2.textContent = '❓';
+      cartasVolteadas = [];
+      bloqueado = false;
+      hablar('Inténtalo otra vez');
+    }, 800);
+  }
+}
