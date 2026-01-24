@@ -18,9 +18,11 @@
     <button onclick="mostrarSeccion('rutinas')">Rutinas</button>
     <button onclick="mostrarSeccion('juego'); iniciarJuego();">Juego de colores</button>
     <button onclick="mostrarSeccion('cartas'); iniciarCartas();">Juego de cartas</button>
+    <button onclick="mostrarSeccion('cuento'); iniciarCuento();">Cuento interactivo</button>
   </nav>
 
   <main>
+    <!-- Pictogramas -->
     <section id="pictos" class="seccion">
       <h2>🖼️ Pictogramas</h2>
       <div class="grid">
@@ -43,6 +45,7 @@
       </div>
     </section>
 
+    <!-- Emociones -->
     <section id="emociones" class="seccion oculto">
       <h2>😊 Emociones</h2>
       <div class="grid">
@@ -57,6 +60,7 @@
       </div>
     </section>
 
+    <!-- Rutinas -->
     <section id="rutinas" class="seccion oculto">
       <h2>⏰ Rutinas</h2>
       <div class="grid">
@@ -71,6 +75,7 @@
       </div>
     </section>
 
+    <!-- Juego de colores -->
     <section id="juego" class="seccion oculto">
       <h2>🎯 Juego de colores</h2>
       <p id="instruccion"></p>
@@ -78,10 +83,19 @@
       <p id="resultado"></p>
     </section>
 
+    <!-- Juego de cartas -->
     <section id="cartas" class="seccion oculto">
       <h2>🃏 Juego de cartas</h2>
       <div class="grid" id="cartasGrid"></div>
     </section>
+
+    <!-- Cuento interactivo -->
+    <section id="cuento" class="seccion oculto">
+      <h2>📖 Cuento interactivo</h2>
+      <p id="cuentoTexto" style="font-size:18px; font-weight:bold;"></p>
+      <div class="grid" id="cuentoOpciones"></div>
+    </section>
+
   </main>
 
   <footer>
