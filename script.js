@@ -15,7 +15,6 @@ function desbloquearAudio() {
 
 function hablar(texto) {
   if (!permitido) return;
-
   speechSynthesis.cancel();
   const voz = new SpeechSynthesisUtterance(texto);
   voz.lang = 'es-ES';
@@ -27,9 +26,7 @@ function hablar(texto) {
    NAVEGACIÓN ENTRE SECCIONES
 ================================ */
 function mostrarSeccion(id) {
-  document.querySelectorAll('.seccion').forEach(s =>
-    s.classList.add('oculto')
-  );
+  document.querySelectorAll('.seccion').forEach(s => s.classList.add('oculto'));
   document.getElementById(id).classList.remove('oculto');
 }
 
@@ -87,7 +84,7 @@ function iniciarJuego() {
    JUEGO DE CARTAS (MEMORY)
    10 CARTAS / 5 PAREJAS
 ================================ */
-const cartasJuego = ['🍎','🍌','🍇','🍉','🍓','🍎','🍌','🍇','🍉','🍓'];
+const cartasJuego = ['🍎', '🍌', '🍇', '🍉', '🥝', '🍎', '🍌', '🍇', '🍉', '🥝'];
 let cartasVolteadas = [];
 let bloqueado = false;
 
@@ -142,4 +139,87 @@ function comprobarPareja() {
       hablar('Inténtalo otra vez');
     }, 800);
   }
+}
+
+/* ===============================
+   CUENTO INTERACTIVO
+================================ */
+const cuento = [
+  {
+    texto: "Hoy Vega quiere ir al parque",
+    opciones: [
+      { picto: "🏞️", texto: "Ir al parque", siguiente: 1 },
+      { picto: "🏠", texto: "Quedarse en casa", siguiente: 2 }
+    ]
+  },
+  {
+    texto: "Vega se encuentra con un perro",
+    opciones: [
+      { picto: "🐶", texto: "Saludar al perro", siguiente: 3 },
+      { picto: "🙈", texto: "Ignorar", siguiente: 4 }
+    ]
+  },
+  {
+    texto: "Vega decide quedarse en casa y juega con sus juguetes",
+    opciones: [
+      { picto: "💧", texto: "Jugar con agua", siguiente: null },
+      { picto: "🎨", texto: "Pintar", siguiente: null }
+    ]
+  },
+  {
+    texto: "El perro mueve la cola y Vega está feliz",
+    opciones: [
+      { picto: "😀", texto: "Reír", siguiente: null },
+      { picto: "⚽", texto: "Jugar al balón", siguiente: null }
+    ]
+  },
+  {
+    texto: "Vega ignora al perro y sigue caminando",
+    opciones: [
+      { picto: "🚶", texto: "Seguir caminando", siguiente: null },
+      { picto: "🥓", texto: "Comer fuet", siguiente: null } // CAMBIO HECHO
+    ]
+  }
+];
+
+let paginaActual = 0;
+
+function iniciarCuento() {
+  paginaActual = 0;
+  mostrarPagina(paginaActual);
+}
+
+function mostrarPagina(indice) {
+  const contenedorTexto = document.getElementById('cuentoTexto');
+  const contenedorOpciones = document.getElementById('cuentoOpciones');
+
+  if (!contenedorTexto || !contenedorOpciones) return;
+
+  const pagina = cuento[indice];
+  contenedorTexto.textContent = pagina.texto;
+  hablar(pagina.texto);
+
+  contenedorOpciones.innerHTML = '';
+
+  pagina.opciones.forEach(opcion => {
+    const btn = document.createElement('button');
+    btn.className = 'picto';
+    btn.textContent = opcion.picto;
+    const span = document.createElement('span');
+    span.textContent = opcion.texto;
+    btn.appendChild(span);
+
+    btn.onclick = () => {
+      if (opcion.siguiente !== null) {
+        paginaActual = opcion.siguiente;
+        mostrarPagina(paginaActual);
+      } else {
+        contenedorTexto.textContent = "✅ Fin del cuento";
+        hablar("Fin del cuento");
+        contenedorOpciones.innerHTML = '';
+      }
+    };
+
+    contenedorOpciones.appendChild(btn);
+  });
 }
