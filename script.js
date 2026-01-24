@@ -144,33 +144,45 @@ const cuento = {
   },
   casa: { texto:"¡Qué bien! Hoy se descansa", opciones:[
     {texto:"Jugar con agua", destino:"Agua", img:"img/agua.png"},
-    {texto:"colegio fuet", destino:"colegio", img:"colegio.png"}
+    {texto:"Pintar", destino:"pintar", img:"img/pintar.png"}
+  ]},
+  pintar: { texto:"¡Qué bien pintas! ¿Ahora que quieres cenar?", opciones:[
+    {texto:"Pizza", destino:"pizza", img:"img/pizza.png"},
+    {texto:"Sopa", destino:"sopa", img:"img/sopa.png"}
   ]},
   colegio: { texto:"¡Genial! Vamos a ver a Diana", opciones:[
-    {texto:"aprender", destino:"descansar", img:"img/aprender.png"},
+    {texto:"aprender", destino:"aprender", img:"img/aprender.png"},
     {texto:"jugar", destino:"jugar", img:"img/jugar.png"}
   ]},
+  aprender: { texto:"¡Que quieres aprender hoy!", opciones:[
+    {texto:"Numeros", destino:"descansar", img:"img/numeros.png"},
+    {texto:"Colores", destino:"descansar", img:"img/colores.png"}
+  ]},
+ 
   jugar: { texto:"¡Juguemos en el patio!", opciones:[
     {texto:"Vamos al patio", destino:"descansar", img:"img/recreo.png"},
   ]},
   
   descansar: { texto:"¡Ya viene Mamá vamos a casa!", opciones:[
     {texto:"Casa", destino:"cenar", img:"img/casa.png"},
-    {texto:"colegio fuet", destino:"colegio", img:"colegio.png"}
   ]},
   
    cenar: { texto:"¡Que quieres cenar!", opciones:[
     {texto:"Pizza", destino:"pizza", img:"img/pizza.png"},
     {texto:"Sopa", destino:"sopa", img:"img/sopa.png"}
   ]},
+  
+
  
   Agua: { texto:"Después de jugar con el agua, elige la cena", opciones:[
     {texto:"Pizza", destino:"pizza", img:"img/pizza.png"},
     {texto:"Sopa", destino:"sopa", img:"img/sopa.png"}
   ]},
-  pizza: { texto:"¡Que rica la pizza! A dormir.", opciones:[], img:"img/pizza.png" },
-  sopa: { texto:"¡Me encanta la sopa! A dormir.", opciones:[], img:"img/sopa.png" }
+  pizza: { texto:"¡Que rica la pizza! Es hora de descansar", destino:"dormir", img:"img/pizza.png" },
+  sopa: { texto:"¡Me encanta la sopa! Es hora de descansar", destino:"dormir", img:"img/sopa.png" },
+  
 };
+
 
 function iniciarCuento(){ mostrarPagina('inicio'); }
 
