@@ -85,9 +85,9 @@ function iniciarJuego() {
 
 /* ===============================
    JUEGO DE CARTAS (MEMORY)
-   16 CARTAS / 8 PAREJAS
+   10 CARTAS / 5 PAREJAS
 ================================ */
-const cartasJuego = ['🍎','🍌','🍇','🍉','🍓','🍒','🥝','🍍','🍎','🍌','🍇','🍉','🍓','🍒','🥝','🍍'];
+const cartasJuego = ['🍎','🍌','🍇','🍉','🍓','🍎','🍌','🍇','🍉','🍓'];
 let cartasVolteadas = [];
 let bloqueado = false;
 
