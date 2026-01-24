@@ -1,7 +1,6 @@
 /* ===============================
    DESBLOQUEO DE AUDIO (MÓVIL)
 ================================ */
-
 let permitido = false;
 
 document.addEventListener('click', desbloquearAudio, { once: true });
@@ -27,7 +26,6 @@ function hablar(texto) {
 /* ===============================
    NAVEGACIÓN ENTRE SECCIONES
 ================================ */
-
 function mostrarSeccion(id) {
   document.querySelectorAll('.seccion').forEach(s =>
     s.classList.add('oculto')
@@ -38,7 +36,6 @@ function mostrarSeccion(id) {
 /* ===============================
    JUEGO DE COLORES
 ================================ */
-
 const colores = ['Rojo', 'Azul', 'Verde', 'Amarillo'];
 const colorHex = {
   Rojo: '#f44336',
@@ -90,7 +87,6 @@ function iniciarJuego() {
    JUEGO DE CARTAS (MEMORY)
    16 CARTAS / 8 PAREJAS
 ================================ */
-
 const cartasJuego = ['🍎','🍌','🍇','🍉','🍓','🍒','🥝','🍍','🍎','🍌','🍇','🍉','🍓','🍒','🥝','🍍'];
 let cartasVolteadas = [];
 let bloqueado = false;
