@@ -1,14 +1,120 @@
-body { font-family: Arial; margin:0; background:#f4f7fb; color:#333; }
-header { background:#6ec6ff; text-align:center; padding:20px; }
-nav { display:flex; justify-content:center; gap:10px; padding:10px; background:#e3f2fd; flex-wrap:wrap; }
-nav button { padding:10px 15px; border:none; border-radius:10px; background:#90caf9; font-size:16px; cursor:pointer; }
-nav button:hover{ background:#64b5f6; }
-main { padding:16px; }
-.seccion { animation:fade 0.3s ease-in-out; }
-.oculto { display:none; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:16px; justify-items:center; }
-.picto { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; max-width:150px; min-height:120px; background:#fff; border-radius:16px; cursor:pointer; }
-.picto img { width:70px; height:auto; }
-footer { text-align:center; padding:15px; background:#e3f2fd; }
-@keyframes fade { from{opacity:0;} to{opacity:1;} }
-@media (max-width:600px) { .grid{ grid-template-columns:repeat(2,1fr); } }
+/* ===============================
+   ESTILOS GENERALES
+================================ */
+body { 
+  font-family: Arial; 
+  margin: 0; 
+  background: #f4f7fb; 
+  color: #333; 
+}
+
+header { 
+  background: #6ec6ff; 
+  text-align: center; 
+  padding: 20px; 
+}
+
+nav { 
+  display: flex; 
+  justify-content: center; 
+  gap: 10px; 
+  padding: 10px; 
+  background: #e3f2fd; 
+  flex-wrap: wrap; 
+}
+
+nav button { 
+  padding: 10px 15px; 
+  border: none; 
+  border-radius: 10px; 
+  background: #90caf9; 
+  font-size: 16px; 
+  cursor: pointer; 
+}
+
+nav button:hover { 
+  background: #64b5f6; 
+}
+
+main { 
+  padding: 16px; 
+}
+
+.seccion { 
+  animation: fade 0.3s ease-in-out; 
+}
+
+.oculto { 
+  display: none; 
+}
+
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+  gap: 16px; 
+  justify-items: center; 
+}
+
+.picto { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  width: 100%; 
+  max-width: 150px; 
+  min-height: 120px; 
+  background: #fff; 
+  border-radius: 16px; 
+  cursor: pointer; 
+  user-select: none; /* evita seleccionar texto al tocar */
+}
+
+.picto img { 
+  width: 70px; 
+  height: auto; 
+}
+
+footer { 
+  text-align: center; 
+  padding: 15px; 
+  background: #e3f2fd; 
+}
+
+@keyframes fade { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+}
+
+/* ===============================
+   MEDIA QUERIES
+================================ */
+@media (max-width: 600px) { 
+  .grid { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  /* Ajuste de pictogramas para móvil */
+  .picto {
+    min-height: 100px;
+  }
+
+  /* Ajuste especial para cartas en móvil */
+  #cartasGrid .picto {
+    width: 60px;
+    min-height: 60px;
+    font-size: 24px; /* emojis más grandes */
+  }
+}
+
+/* ===============================
+   AJUSTE DE CARTAS PARA TOUCH
+================================ */
+#cartasGrid .picto {
+  min-height: 80px;        /* altura mínima para tocar con el dedo */
+  width: 80px;             /* ancho fijo para ver todas las cartas */
+  font-size: 32px;         /* emoji más grande */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;       /* evita seleccionar texto */
+}
