@@ -93,20 +93,16 @@ footer {
     grid-template-columns: repeat(2, 1fr); 
   }
 
+  /* Ajuste de pictogramas para móvil */
   .picto {
     min-height: 100px;
   }
 
   /* Ajuste especial para cartas en móvil */
-  #cartasGrid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas para 16 cartas */
-    gap: 8px; /* menos espacio entre cartas */
-  }
-
   #cartasGrid .picto {
-    width: 50px;
-    min-height: 50px;
-    font-size: 20px; /* emojis más pequeños para caber */
+    width: 60px;
+    min-height: 60px;
+    font-size: 24px; /* emojis más grandes */
   }
 }
 
@@ -114,11 +110,11 @@ footer {
    AJUSTE DE CARTAS PARA TOUCH
 ================================ */
 #cartasGrid .picto {
-  min-height: 80px;        
-  width: 80px;             
-  font-size: 32px;         
+  min-height: 80px;        /* altura mínima para tocar con el dedo */
+  width: 80px;             /* ancho fijo para ver todas las cartas */
+  font-size: 32px;         /* emoji más grande */
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;       
+  user-select: none;       /* evita seleccionar texto */
 }
